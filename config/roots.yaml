@@ -1,0 +1,15 @@
+scan_roots:
+  - "C:\\Projects"
+  - "/home/user/projects"
+
+scan_rules:
+  include_git_repos: true
+  include_non_git_apps: true
+  incremental_scan: true
+  max_depth: 5
+
+guidance_filenames:
+  - "claude.md"
+  - "README.md"
+  - "CONTRIBUTING.md"
+  - "AGENTS.md"

@@ -1,0 +1,17 @@
+Now act as a critical reviewer of your own work.
+
+Do not rewrite the solution yet. First audit it for:
+- hidden assumptions
+- mismatch with docs or expected behavior
+- edge cases not tested
+- overengineering or unnecessary changes
+- under-testing or missing verification
+- version-specific risks
+
+Then print:
+STRENGTHS: 1-3 bullet points
+WEAKNESSES: 1-3 bullet points
+HIGHEST-VALUE FIX: the single most important improvement
+
+If the highest-value fix is actionable, apply it now and re-run verification.
+If not, explain why and stop.

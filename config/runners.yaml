@@ -1,0 +1,26 @@
+runners:
+  - runner_id: claude_main
+    type: claude
+    mode: terminal
+    command: "claude"
+    environment: windows
+
+  - runner_id: codex_local_a
+    type: codex
+    mode: terminal
+    command: "codex"
+    environment: windows
+
+  - runner_id: codex_local_b
+    type: codex
+    mode: terminal
+    command: "codex"
+    environment: windows
+
+  - runner_id: gemini_optional
+    type: gemini
+    mode: terminal
+    command: "gemini-cli"
+    environment: windows
+    optional: true
+

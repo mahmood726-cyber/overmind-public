@@ -1,0 +1,43 @@
+concurrency:
+  default_active_sessions: 2
+  max_active_sessions: 3
+  degraded_sessions: 1
+  scale_up_cpu_below: 70
+  scale_down_cpu_above: 88
+  scale_down_ram_above: 85
+  scale_down_swap_above_mb: 1024
+
+limits:
+  retry_same_strategy_max: 2
+  repeated_failure_threshold: 3
+  idle_timeout_min: 10
+  summary_trigger_output_lines: 250
+  checkpoint_every_min: 20
+
+routing:
+  claude:
+    strengths: ["architecture", "multi_step_investigation", "broad_refactor"]
+  codex:
+    strengths: ["targeted_fix", "tests", "benchmarks", "cleanup"]
+  gemini:
+    strengths: ["alternative_ideas", "critique", "summaries"]
+
+risk_policy:
+  high_risk_requires:
+    - build
+    - relevant_tests
+    - regression_checks
+    - numeric_regression
+  medium_high_requires:
+    - build
+    - relevant_tests
+    - regression_checks
+    - numeric_regression
+  medium_risk_requires:
+    - build
+    - relevant_tests
+  low_risk_requires:
+    - build_or_direct_evidence
+
+isolation:
+  mode: worktree

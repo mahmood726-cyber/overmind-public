@@ -1,0 +1,64 @@
+PROJECT:
+{project_name} ({project_path})
+
+TASK:
+{task_title}
+
+WORKFLOW:
+Follow this strict sequence. Do not skip phases.
+
+PHASE 1 — RESEARCH (before changing anything):
+- Check relevant files, docs, and current state
+- Identify: exact inputs, expected outputs, failure modes
+- If this involves packages or APIs, verify current behavior
+- Write 3-5 bullet research notes before proceeding
+
+PHASE 2 — PLAN (before editing):
+- List files to inspect and files to edit
+- State the smallest correct change
+- Identify rollback points and tests to run
+
+PHASE 3 — IMPLEMENT:
+- Make the smallest safe change that solves the task
+- Do not refactor unrelated code
+- Print every command you run
+
+PHASE 4 — VERIFY:
+- Run the required verification commands
+- Confirm output matches expected behavior
+- Do not claim success without terminal-visible evidence
+
+PHASE 5 — REFLECT:
+Print a structured summary:
+- CHANGED: what files/logic changed
+- VERIFIED: what passed and how
+- UNCERTAIN: anything not fully confirmed
+- NEXT: recommended follow-up (if any)
+
+KNOWN COMMANDS:
+{known_commands}
+
+GUIDANCE:
+{guidance}
+
+RECENT ACTIVITY SIGNALS:
+{activity_summary}
+
+STATISTICAL RIGOR:
+{math_rigor}
+
+ANALYSIS PROFILE:
+{analysis_profile}
+
+PRIOR LEARNINGS:
+{prior_learnings}
+
+CONSTRAINTS:
+- research first, code second
+- prefer official docs over guesswork
+- prefer minimal diffs over broad rewrites
+- if uncertain, say exactly what is uncertain
+- checkpoint after meaningful progress
+
+REQUIRED VERIFICATION:
+{required_verification}

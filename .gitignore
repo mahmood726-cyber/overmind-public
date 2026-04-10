@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+*.env
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+
+# Local runtime data — don't ship
+data/
+
+# Local sentence-transformers cache
+.cache/

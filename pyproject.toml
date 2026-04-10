@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "overmind"
+version = "3.1.0"
+description = "Local evidence-first orchestration for terminal coding agents."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "psutil>=5.9",
+  "PyYAML>=6.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0",
+]
+embeddings = [
+  "sentence-transformers>=2.2",
+]
+
+[project.scripts]
+overmind = "overmind.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["overmind*"]
+
+[tool.setuptools.package-data]
+overmind = ["prompts/*.txt"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+

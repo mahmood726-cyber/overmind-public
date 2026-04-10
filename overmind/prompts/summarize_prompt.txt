@@ -1,0 +1,10 @@
+Summarize your session in this exact format (8 lines max):
+
+STATUS: [completed | partial | blocked | failed]
+COMMANDS_RUN: [list each command and its exit code]
+CHANGED: [files modified, lines changed]
+VERIFIED: [what passed, with evidence]
+FAILED: [what failed, with error summary]
+UNCERTAIN: [anything not fully confirmed]
+RISKS: [remaining risks or edge cases]
+NEXT: [recommended follow-up action]

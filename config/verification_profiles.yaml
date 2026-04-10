@@ -1,0 +1,36 @@
+profiles:
+  ui_change:
+    required:
+      - build
+      - targeted_browser_test
+      - accessibility_check
+  performance_change:
+    required:
+      - before_after_benchmark
+      - lighthouse
+      - no_correctness_regression
+  numerical_change:
+    required:
+      - deterministic_fixture_tests
+      - edge_case_tests
+      - output_comparison
+  browser_numeric_app:
+    required:
+      - build
+      - relevant_tests
+      - targeted_browser_test
+      - numeric_regression
+      - regression_checks
+  refactor:
+    required:
+      - build
+      - existing_tests
+      - smoke_flow
+
+# Add custom project_rules here to map project paths to verification profiles.
+# Example:
+# project_rules:
+#   - profile: refactor
+#     match_path_contains:
+#       - "\\my-app"
+project_rules: []
