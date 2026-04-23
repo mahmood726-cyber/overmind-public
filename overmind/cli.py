@@ -5,7 +5,7 @@ import json
 import sys
 from pathlib import Path
 
-from overmind.config import AppConfig
+from overmind.config import AppConfig, default_db_path
 from overmind.core.orchestrator import Orchestrator
 
 
@@ -86,20 +86,20 @@ def main(argv: list[str] | None = None) -> None:
     # Commands that don't need full orchestrator
     if args.command == "wrap":
         from overmind.activation.wrap import wrap
-        db_path = args.db_path or Path("C:\\overmind\\data\\state\\overmind.db")
+        db_path = args.db_path or default_db_path()
         sys.exit(wrap(args.runner, args.extra, db_path=db_path))
         return
 
     if args.command == "watch":
         from overmind.activation.watchdog import watch
-        db_path = args.db_path or Path("C:\\overmind\\data\\state\\overmind.db")
+        db_path = args.db_path or default_db_path()
         watch(db_path, interval=args.interval, iterations=args.iterations)
         return
 
     if args.command == "sessions":
         from overmind.activation.session_tracker import SessionTracker
         from overmind.storage.db import StateDatabase
-        db_path = args.db_path or Path("C:\\overmind\\data\\state\\overmind.db")
+        db_path = args.db_path or default_db_path()
         db = StateDatabase(db_path)
         try:
             tracker = SessionTracker(db)

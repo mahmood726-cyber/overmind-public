@@ -25,8 +25,9 @@ def install_claude_hooks() -> bool:
     hooks = settings.setdefault("hooks", {})
 
     python = sys.executable.replace("\\", "/")
-    start_script = "C:/overmind/overmind/activation/hooks/on_session_start.py"
-    stop_script = "C:/overmind/overmind/activation/hooks/on_session_stop.py"
+    hooks_dir = Path(__file__).resolve().parent / "hooks"
+    start_script = hooks_dir.joinpath("on_session_start.py").as_posix()
+    stop_script = hooks_dir.joinpath("on_session_stop.py").as_posix()
 
     start_cmd = f'"{python}" "{start_script}"'
     stop_cmd = f'"{python}" "{stop_script}"'
@@ -76,7 +77,7 @@ alias om-codex='python -c "from overmind.activation.wrap import wrap; wrap(\\"co
 alias om-gemini='python -c "from overmind.activation.wrap import wrap; wrap(\\"gemini\\", [])"'
 alias om-sessions='python -c "from overmind.cli import main; main([\\"sessions\\"])"'
 alias om-memories='python -c "from overmind.cli import main; main([\\"memories\\", \\"--stats\\"])"'
-alias om-watch='python -c "from overmind.activation.watchdog import watch; watch(__import__(\\"pathlib\\").Path(\\"C:/overmind/data/state/overmind.db\\"))"'
+alias om-watch='python -c "from overmind.activation.watchdog import watch; from overmind.config import default_db_path; watch(default_db_path())"'
 {end_marker}\n"""
 
     if bashrc.exists():
@@ -96,6 +97,8 @@ alias om-watch='python -c "from overmind.activation.watchdog import watch; watch
 
 def verify() -> None:
     """Verify installation."""
+    from overmind.config import default_db_path
+
     print("\nVerification:")
 
     settings_path = Path.home() / ".claude" / "settings.json"
@@ -112,7 +115,7 @@ def verify() -> None:
         has_aliases = "OVERMIND ACTIVATION" in bashrc.read_text(encoding="utf-8")
         print(f"  Shell aliases: {'OK' if has_aliases else 'MISSING'}")
 
-    print(f"  Overmind DB: C:\\overmind\\data\\state\\overmind.db")
+    print(f"  Overmind DB: {default_db_path()}")
     print(f"  Python: {sys.executable}")
 
 

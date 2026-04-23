@@ -14,6 +14,7 @@ from pathlib import Path
 
 from overmind.activation.context_injector import ContextInjector
 from overmind.activation.session_tracker import SessionTracker
+from overmind.config import default_db_path
 from overmind.storage.db import StateDatabase
 
 
@@ -26,9 +27,7 @@ RUNNER_COMMANDS = {
 
 def wrap(runner_type: str, extra_args: list[str], db_path: Path | None = None) -> int:
     """Wrap a CLI agent with Overmind context and session tracking."""
-    db_path = db_path or Path(
-        os.environ.get("OVERMIND_DB_PATH", "C:\\overmind\\data\\state\\overmind.db")
-    )
+    db_path = db_path or default_db_path()
     project_path = os.getcwd()
 
     db = StateDatabase(db_path)

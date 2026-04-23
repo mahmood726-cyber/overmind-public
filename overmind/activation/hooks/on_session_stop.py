@@ -5,23 +5,18 @@ Called by Claude Code via settings.json hook when a session ends.
 from __future__ import annotations
 
 import os
-import sys
 
 
 def main() -> None:
     project_path = os.environ.get("CLAUDE_PROJECT_DIR", os.getcwd())
-    db_path = os.environ.get(
-        "OVERMIND_DB_PATH",
-        "C:\\overmind\\data\\state\\overmind.db"
-    )
 
     try:
-        from pathlib import Path
+        from overmind.config import default_db_path
         from overmind.storage.db import StateDatabase
         from overmind.activation.session_tracker import SessionTracker
         from overmind.memory.dream_engine import DreamEngine
 
-        db = StateDatabase(Path(db_path))
+        db = StateDatabase(default_db_path())
         try:
             # Close any sessions for this process
             tracker = SessionTracker(db)

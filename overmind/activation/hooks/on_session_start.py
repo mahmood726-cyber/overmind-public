@@ -6,26 +6,19 @@ that Claude can see. Must be fast (< 2 seconds).
 from __future__ import annotations
 
 import os
-import sys
 
 
 def main() -> None:
     # Determine project path from CWD or environment
     project_path = os.environ.get("CLAUDE_PROJECT_DIR", os.getcwd())
-    db_path = os.environ.get(
-        "OVERMIND_DB_PATH",
-        os.path.expanduser("~/../overmind/data/state/overmind.db")
-        if sys.platform != "win32"
-        else "C:\\overmind\\data\\state\\overmind.db"
-    )
 
     try:
-        from pathlib import Path
+        from overmind.config import default_db_path
         from overmind.storage.db import StateDatabase
         from overmind.activation.context_injector import ContextInjector
         from overmind.activation.session_tracker import SessionTracker
 
-        db = StateDatabase(Path(db_path))
+        db = StateDatabase(default_db_path())
         try:
             # Register this session
             tracker = SessionTracker(db)

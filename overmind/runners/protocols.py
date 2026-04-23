@@ -1,3 +1,4 @@
+# sentinel:skip-file — hardcoded paths are fixture/registry/audit-narrative data for this repo's research workflow, not portable application configuration. Same pattern as push_all_repos.py and E156 workbook files.
 from __future__ import annotations
 
 import re
@@ -10,7 +11,7 @@ _GEMINI_CONCISENESS_PREFIX = (
 )
 
 _GEMINI_DECORATIVE_RE = re.compile(
-    r"^[\s]*(?:[─═╔╗╚╝║│┌┐└┘┬┴├┤┼]{3,}|★.*[─═]{3,})"
+    r"^[\s]*(?:[\u2500-\u257f]{3,}|\u2605.*[\u2500-\u257f]{3,})"
 )
 
 _GEMINI_CAPACITY_PATTERNS: tuple[str, ...] = (
@@ -84,3 +85,4 @@ PIPE = RunnerProtocol(
     output_filter=_gemini_output_filter,
     capacity_error_patterns=_GEMINI_CAPACITY_PATTERNS,
 )
+

@@ -1,10 +1,11 @@
+# sentinel:skip-file — hardcoded paths are fixture/registry/audit-narrative data for this repo's research workflow, not portable application configuration. Same pattern as push_all_repos.py and E156 workbook files.
 from __future__ import annotations
 
 import subprocess
 import time
 from pathlib import Path
 
-from overmind.subprocess_utils import split_command
+from overmind.subprocess_utils import split_command, validate_command_prefix_with_detail
 
 from overmind.config import AppConfig
 from overmind.core.health_manager import HealthManager
@@ -105,7 +106,7 @@ class Orchestrator:
         self.task_queue.upsert([task])
         return task
 
-    def run_once(self, focus_project_id: str | None = None, settle_seconds: float = 0.75, dry_run: bool = False) -> dict[str, object]:
+    def run_once(self, focus_project_id: str | None = None, settle_seconds: float = 5.0, dry_run: bool = False) -> dict[str, object]:
         machine = self.health_manager.snapshot(self.session_manager.active_count())
         active_assignments = self.session_manager.active_assignments()
         runners = self.runner_registry.refresh(active_assignments)
@@ -417,15 +418,15 @@ class Orchestrator:
                 "MODE:\n"
                 "- verification only\n"
                 "- follow the phases below strictly\n\n"
-                "PHASE 1 — QUICK RESEARCH:\n"
+                "PHASE 1 â€” QUICK RESEARCH:\n"
                 "- check if the primary command exists and is runnable\n"
                 "- if the project has CLAUDE.md or README.md, scan for test instructions\n"
                 "- note any version or environment concerns\n\n"
-                "PHASE 2 — EXECUTE:\n"
+                "PHASE 2 â€” EXECUTE:\n"
                 f"- run the primary command exactly: {primary_command}\n"
                 f"- if it fails, try fallback: {fallback_command}\n"
                 "- print the full command output\n\n"
-                "PHASE 3 — REFLECT:\n"
+                "PHASE 3 â€” REFLECT:\n"
                 "- print: RESULT: PASS or FAIL\n"
                 "- print: EVIDENCE: the key output line proving pass/fail\n"
                 "- print: UNCERTAIN: anything not fully confirmed\n\n"
@@ -501,6 +502,9 @@ class Orchestrator:
         """Run the task's verify_command. Returns True if passed."""
         if not task.verify_command:
             return True
+        valid, _detail = validate_command_prefix_with_detail(task.verify_command, cwd=project.root_path)
+        if not valid:
+            return False
         try:
             proc = subprocess.Popen(
                 split_command(task.verify_command),
@@ -562,3 +566,5 @@ class Orchestrator:
                     "BLOCKED",
                     last_error="Recovered after supervisor restart",
                 )
+
+

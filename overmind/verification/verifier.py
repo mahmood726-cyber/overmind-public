@@ -3,9 +3,10 @@ from __future__ import annotations
 import subprocess
 from pathlib import Path
 
-from overmind.subprocess_utils import split_command
+from overmind.subprocess_utils import split_command, validate_command_prefix_with_detail
 
 from overmind.storage.models import ProjectRecord, TaskRecord, VerificationResult
+from overmind.verification.policy_guard import PolicyGuard
 from overmind.verification.profiles import VerificationPlanner
 
 
@@ -14,6 +15,7 @@ class VerificationEngine:
         self.artifacts_dir = artifacts_dir
         self.artifacts_dir.mkdir(parents=True, exist_ok=True)
         self.planner = VerificationPlanner()
+        self.policy_guard = PolicyGuard()
         self.verification_timeout = verification_timeout
 
     def run(self, task: TaskRecord, project: ProjectRecord) -> VerificationResult:
@@ -50,7 +52,10 @@ class VerificationEngine:
                 )
                 details.append(f"{check}: exit={exit_code} command={command}")
                 if exit_code == -1:
-                    details.append(f"{check}: timed out after {self.verification_timeout}s")
+                    if "timed out" in stderr.lower():
+                        details.append(f"{check}: timed out after {self.verification_timeout}s")
+                    elif stderr:
+                        details.append(f"{check}: {stderr}")
                 cached_results[command] = (exit_code == 0, check)
                 if exit_code != 0:
                     check_passed = False
@@ -69,6 +74,18 @@ class VerificationEngine:
         )
 
     def _run_command(self, command: str, cwd: str) -> tuple[int, str, str]:
+        valid, detail = validate_command_prefix_with_detail(command, cwd=cwd)
+        if not valid:
+            return -1, "", detail or f"Blocked: command prefix not allowlisted: {command[:200]}"
+        blocking_violation = next(
+            (violation for violation in self.policy_guard.evaluate([command]) if violation.severity == "block"),
+            None,
+        )
+        if blocking_violation is not None:
+            return -1, "", (
+                f"Blocked: policy violation {blocking_violation.rule_name}: "
+                f"{blocking_violation.message}"
+            )
         try:
             proc = subprocess.Popen(
                 split_command(command),
@@ -77,6 +94,8 @@ class VerificationEngine:
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
                 text=True,
+                encoding="utf-8",
+                errors="replace",
             )
             try:
                 stdout, stderr = proc.communicate(timeout=self.verification_timeout)
