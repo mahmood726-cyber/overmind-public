@@ -1,5 +1,7 @@
 # Overmind
 
+[![ci](https://github.com/mahmood726-cyber/overmind-public/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/mahmood726-cyber/overmind-public/actions/workflows/ci.yml) [![codeql](https://github.com/mahmood726-cyber/overmind-public/actions/workflows/codeql.yml/badge.svg?branch=master)](https://github.com/mahmood726-cyber/overmind-public/actions/workflows/codeql.yml) [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![python: 3.10+](https://img.shields.io/badge/python-3.10%2B-blue)](https://www.python.org/)
+
 **Local, evidence-first orchestration for terminal coding agents.**
 
 Overmind supervises multiple terminal-based AI coding agents (Claude, Codex, Gemini) running in parallel against your projects. It makes evidence-first decisions: parsing terminal output, gating completion on independent verification, learning across sessions through persistent typed memory, and routing tasks intelligently using Q-learning.
