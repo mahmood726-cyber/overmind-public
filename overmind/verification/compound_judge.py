@@ -16,7 +16,12 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 
-from overmind.storage.models import ProjectRecord, TaskRecord, VerificationResult, utc_now
+from overmind.storage.models import (
+    ProjectRecord,
+    TaskRecord,
+    VerificationResult,
+    utc_now,
+)
 from overmind.verification.llm_judge import JudgeVerdict, LLMJudge
 
 

@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import json
 import shutil
 
 from overmind.config import AppConfig
@@ -89,7 +88,7 @@ def test_project_scanner_rewrites_stale_guidance_paths_and_prioritizes_focused_t
     project = ProjectScanner(config).scan_project(project_root)
 
     assert project.test_commands[0].endswith("example-extractor-v2\\tests\\test_proof_carrying_numbers.py")
-    assert "python -m pytest -q" == project.test_commands[-1]
+    assert project.test_commands[-1] == "python -m pytest -q"
 
 
 def test_project_scanner_detects_single_file_html_app_and_filters_unavailable_profile_checks(tmp_path):

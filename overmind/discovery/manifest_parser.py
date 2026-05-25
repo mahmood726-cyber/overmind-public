@@ -5,7 +5,6 @@ import json
 from pathlib import Path
 from typing import Any
 
-
 SCRIPT_BROWSER_HINTS = ("playwright", "e2e", "cypress")
 SCRIPT_PERF_HINTS = ("lighthouse", "perf", "benchmark")
 STACK_HINTS = {

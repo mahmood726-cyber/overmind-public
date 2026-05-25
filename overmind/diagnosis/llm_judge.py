@@ -7,11 +7,9 @@ from __future__ import annotations
 
 import json
 import subprocess
-import sys
 from dataclasses import dataclass
 
 from overmind.diagnosis.judge import Diagnosis
-from overmind.subprocess_utils import split_command
 
 CLAUDE_CMD = "claude"
 

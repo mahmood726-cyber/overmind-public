@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from dataclasses import asdict, dataclass, field, is_dataclass
 from datetime import UTC, datetime
 from pathlib import Path
@@ -8,6 +9,10 @@ from typing import Any
 
 def utc_now() -> str:
     return datetime.now(UTC).replace(microsecond=0).isoformat()
+
+
+def new_trace_id() -> str:
+    return f"trace_{uuid.uuid4().hex[:12]}"
 
 
 def slugify(value: str) -> str:
@@ -87,6 +92,7 @@ class RunnerRecord(SerializableModel):
     preferred_tasks: list[str] = field(default_factory=list)
     last_seen_at: str = field(default_factory=utc_now)
     optional: bool = False
+    isolated: bool = False
     available: bool = True
     unavailability_reason: str | None = None
 
@@ -103,6 +109,7 @@ class TaskRecord(SerializableModel):
     expected_runtime_min: int
     expected_context_cost: str
     required_verification: list[str]
+    trace_id: str = ""
     status: str = "QUEUED"
     assigned_runner_id: str | None = None
     attempt_count: int = 0
@@ -140,6 +147,8 @@ class Assignment(SerializableModel):
     task_id: str
     project_id: str
     prompt: str
+    trace_id: str = ""
+    requires_isolation: bool = False
 
 
 @dataclass(slots=True)
@@ -163,6 +172,7 @@ class SessionObservation(SerializableModel):
     started_at: str
     last_output_at: str
     command: str
+    trace_id: str = ""
 
 
 @dataclass(slots=True)
@@ -173,6 +183,7 @@ class SessionEvidence(SerializableModel):
     risks: list[str]
     next_action: str
     required_proof: list[str]
+    trace_id: str = ""
     events: list[EvidenceEvent] = field(default_factory=list)
     last_commands: list[str] = field(default_factory=list)
     output_excerpt: list[str] = field(default_factory=list)
@@ -190,6 +201,7 @@ class VerificationResult(SerializableModel):
     completed_checks: list[str]
     skipped_checks: list[str]
     details: list[str]
+    trace_id: str = ""
     created_at: str = field(default_factory=utc_now)
 
 
@@ -224,3 +236,5 @@ class MemoryRecord(SerializableModel):
     valid_from: str | None = None
     valid_until: str | None = None
     embedding: list[float] | None = None
+    source_path: str | None = None
+    source_hash: str | None = None

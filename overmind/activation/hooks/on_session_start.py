@@ -13,10 +13,10 @@ def main() -> None:
     project_path = os.environ.get("CLAUDE_PROJECT_DIR", os.getcwd())
 
     try:
-        from overmind.config import default_db_path
-        from overmind.storage.db import StateDatabase
         from overmind.activation.context_injector import ContextInjector
         from overmind.activation.session_tracker import SessionTracker
+        from overmind.config import default_db_path
+        from overmind.storage.db import StateDatabase
 
         db = StateDatabase(default_db_path())
         try:

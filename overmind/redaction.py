@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import re
 
-
 SECRET_PATTERNS: dict[str, re.Pattern[str]] = {
     "google_api_key": re.compile(r"AIza[0-9A-Za-z\-_]{20,}"),
     "openai_like_key": re.compile(r"\bsk-[A-Za-z0-9]{20,}\b"),

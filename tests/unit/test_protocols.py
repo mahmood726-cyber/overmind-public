@@ -11,7 +11,6 @@ from overmind.runners.protocols import INTERACTIVE, ONE_SHOT, PIPE
 from overmind.runners.runner_registry import RunnerRegistry
 from overmind.storage.db import StateDatabase
 
-
 # ---------------------------------------------------------------------------
 # Protocol property tests
 # ---------------------------------------------------------------------------

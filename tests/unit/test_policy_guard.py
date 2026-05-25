@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from overmind.verification.policy_guard import PolicyGuard, PolicyRule, PolicyViolation
-
 import re
+
+from overmind.verification.policy_guard import PolicyGuard, PolicyRule
 
 
 def test_detects_rm_rf_root():

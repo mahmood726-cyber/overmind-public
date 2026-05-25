@@ -19,8 +19,7 @@ from __future__ import annotations
 import json
 import subprocess
 import sys
-from dataclasses import dataclass, field
-from pathlib import Path
+from dataclasses import dataclass
 
 from overmind.verification.scope_lock import WitnessResult
 

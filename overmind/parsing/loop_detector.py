@@ -1,8 +1,8 @@
 from __future__ import annotations
 
-from collections import Counter
 import hashlib
 import re
+from collections import Counter
 
 
 class LoopDetector:

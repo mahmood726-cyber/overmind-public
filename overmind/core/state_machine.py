@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-
 TASK_TRANSITIONS = {
     "DISCOVERED": {"QUEUED", "PAUSED", "ARCHIVED"},
     "QUEUED": {"ASSIGNED", "PAUSED", "ARCHIVED"},

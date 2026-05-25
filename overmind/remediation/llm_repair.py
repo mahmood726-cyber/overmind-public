@@ -12,10 +12,8 @@ Safety rules (inherited from AutoFixer):
 from __future__ import annotations
 
 import json
-import os
 import subprocess
 import sys
-import tempfile
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -157,16 +155,15 @@ class LLMRepairer:
                         True, f"llm_repair ({len(applied_changes)} changes)",
                         f"{plan.description} | verified PASS"
                     )
-                else:
-                    # Roll back
-                    for file_path, old_text, new_text in applied_changes:
-                        content = Path(file_path).read_text(encoding="utf-8")
-                        content = content.replace(new_text, old_text, 1)
-                        Path(file_path).write_text(content, encoding="utf-8")
-                    return FixResult(
-                        False, "llm_repair (rolled back)",
-                        f"Patch applied but verification failed — rolled back"
-                    )
+                # Roll back
+                for file_path, old_text, new_text in applied_changes:
+                    content = Path(file_path).read_text(encoding="utf-8")
+                    content = content.replace(new_text, old_text, 1)
+                    Path(file_path).write_text(content, encoding="utf-8")
+                return FixResult(
+                    False, "llm_repair (rolled back)",
+                    "Patch applied but verification failed — rolled back"
+                )
 
             # No verify_fn — report success but note unverified
             return FixResult(

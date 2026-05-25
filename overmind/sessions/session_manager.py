@@ -6,7 +6,12 @@ from pathlib import Path
 from overmind.runners.protocols import INTERACTIVE, RunnerProtocol
 from overmind.sessions.terminal_session import TerminalSession
 from overmind.sessions.transcript_store import TranscriptStore
-from overmind.storage.models import Assignment, ProjectRecord, RunnerRecord, SessionObservation
+from overmind.storage.models import (
+    Assignment,
+    ProjectRecord,
+    RunnerRecord,
+    SessionObservation,
+)
 
 EXEC_SUBCOMMAND_PATTERN = re.compile(r"\bexec\b", re.IGNORECASE)
 SKIP_GIT_REPO_CHECK_PATTERN = re.compile(

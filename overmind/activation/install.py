@@ -43,7 +43,7 @@ def install_claude_hooks() -> bool:
         })
         print(f"  ADDED: SessionStart hook -> {start_script}")
     else:
-        print(f"  EXISTS: SessionStart hook already installed")
+        print("  EXISTS: SessionStart hook already installed")
 
     # Add Stop hook
     stop_hooks = hooks.setdefault("Stop", [])
@@ -56,7 +56,7 @@ def install_claude_hooks() -> bool:
         })
         print(f"  ADDED: Stop hook -> {stop_script}")
     else:
-        print(f"  EXISTS: Stop hook already installed")
+        print("  EXISTS: Stop hook already installed")
 
     settings_path.write_text(json.dumps(settings, indent=2), encoding="utf-8")
     return True

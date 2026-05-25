@@ -9,14 +9,12 @@ from __future__ import annotations
 
 import os
 import subprocess
-import sys
 from pathlib import Path
 
 from overmind.activation.context_injector import ContextInjector
 from overmind.activation.session_tracker import SessionTracker
 from overmind.config import default_db_path
 from overmind.storage.db import StateDatabase
-
 
 RUNNER_COMMANDS = {
     "claude": "claude",

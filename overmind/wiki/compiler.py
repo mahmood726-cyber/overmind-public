@@ -3,13 +3,12 @@ from __future__ import annotations
 
 import re
 import subprocess
-from datetime import datetime, UTC
+from datetime import UTC, datetime
 from pathlib import Path
 
 from overmind.storage.models import ProjectRecord
 from overmind.verification.cert_bundle import CertBundle
-from overmind.wiki.templates import render_article, render_index, render_changelog_entry
-
+from overmind.wiki.templates import render_article, render_changelog_entry, render_index
 
 HISTORY_RE = re.compile(
     r"^\| (\d{4}-\d{2}-\d{2}) \| (\w+) \| ([^|]+)\| ([^|]+)\| ([^|]+)\|",

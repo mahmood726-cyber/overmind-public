@@ -11,8 +11,6 @@ import sys
 from dataclasses import dataclass
 from pathlib import Path
 
-from overmind.subprocess_utils import split_command
-
 PYTHON = sys.executable
 
 
@@ -67,8 +65,7 @@ class DependencyRotFix:
             )
             if proc.returncode == 0:
                 return FixResult(True, f"pip install {module}", "Installed successfully")
-            else:
-                return FixResult(False, f"pip install {module}", proc.stderr.strip()[-200:])
+            return FixResult(False, f"pip install {module}", proc.stderr.strip()[-200:])
         except subprocess.TimeoutExpired:
             return FixResult(False, f"pip install {module}", "Timed out after 60s")
         except OSError as exc:
@@ -198,7 +195,6 @@ class MissingFixtureFix:
             )
             if proc.returncode == 0:
                 return FixResult(True, f"git checkout -- {path}", "Restored from git")
-            else:
-                return FixResult(False, f"git checkout -- {path}", proc.stderr.strip()[-200:])
+            return FixResult(False, f"git checkout -- {path}", proc.stderr.strip()[-200:])
         except (subprocess.TimeoutExpired, OSError) as exc:
             return FixResult(False, f"git checkout -- {path}", str(exc))

@@ -11,7 +11,6 @@ from overmind.runners.quota_tracker import QuotaTracker
 from overmind.storage.db import StateDatabase
 from overmind.storage.models import RunnerRecord, utc_now
 
-
 ADAPTERS = {
     "claude": ClaudeRunnerAdapter,
     "codex": CodexRunnerAdapter,

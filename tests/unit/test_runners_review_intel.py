@@ -11,10 +11,10 @@
 from __future__ import annotations
 
 import json
-import sys
-from pathlib import Path
 
-from overmind.config import AppConfig, RunnerDefinition, PoliciesConfig, RootsConfig
+from overmind.config import AppConfig, PoliciesConfig, RootsConfig, RunnerDefinition
+from overmind.intelligence.daily_report import DailyReport
+from overmind.intelligence.session_miner import SessionMiner
 from overmind.review.finding import (
     PersonaReviewResult,
     ReviewFinding,
@@ -28,11 +28,8 @@ from overmind.runners.claude_runner import ClaudeRunnerAdapter
 from overmind.runners.codex_runner import CodexRunnerAdapter
 from overmind.runners.gemini_runner import GeminiRunnerAdapter
 from overmind.runners.runner_registry import RunnerRegistry, _command_name
-from overmind.intelligence.daily_report import DailyReport
-from overmind.intelligence.session_miner import SessionMiner
 from overmind.storage.db import StateDatabase
 from overmind.storage.models import MemoryRecord, ProjectRecord, RunnerRecord
-
 
 # ---------------------------------------------------------------------------
 # Helpers

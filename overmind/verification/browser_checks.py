@@ -40,7 +40,7 @@ class BrowserCheckResult:
 
 
 class QuietRequestHandler(http.server.SimpleHTTPRequestHandler):
-    def log_message(self, format: str, *args) -> None:  # noqa: A003
+    def log_message(self, format: str, *args) -> None:
         return
 
 

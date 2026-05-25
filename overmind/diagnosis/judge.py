@@ -4,10 +4,10 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass
 
+from overmind.diagnosis.taxonomy import FAILURE_TYPES
 from overmind.storage.models import utc_now
 from overmind.verification.cert_bundle import CertBundle
 from overmind.verification.scope_lock import WitnessResult
-from overmind.diagnosis.taxonomy import FAILURE_TYPES
 
 
 @dataclass

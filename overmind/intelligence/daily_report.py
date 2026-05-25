@@ -264,10 +264,10 @@ class DailyReport:
 
     def _to_markdown(self, report: dict[str, object]) -> str:
         lines = [
-            f"# OVERMIND Daily Intelligence Report",
-            f"",
+            "# OVERMIND Daily Intelligence Report",
+            "",
             f"**Day {report['day_number']}** | Generated: {report['generated_at']}",
-            f"",
+            "",
         ]
 
         # Portfolio

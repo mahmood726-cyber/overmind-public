@@ -1,9 +1,8 @@
 from __future__ import annotations
 
 from overmind.storage.db import StateDatabase
-from overmind.storage.models import ProjectRecord, TaskRecord
+from overmind.storage.models import TaskRecord
 from overmind.tasks.task_queue import TaskQueue
-from overmind.tasks.task_generator import TaskGenerator
 
 
 def test_queued_filters_out_blocked_tasks(tmp_path):

@@ -31,7 +31,6 @@ from overmind.storage.models import (
 from overmind.tasks.prioritizer import Prioritizer
 from overmind.tasks.task_models import build_baseline_task, build_test_first_tasks
 
-
 # ---------------------------------------------------------------------------
 # 1. Analysis Signals (4 tests)
 # ---------------------------------------------------------------------------

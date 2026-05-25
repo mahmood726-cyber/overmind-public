@@ -1,7 +1,8 @@
 from __future__ import annotations
 
 import threading
-from typing import Callable, TextIO
+from collections.abc import Callable
+from typing import TextIO
 
 
 class OutputStreamReader(threading.Thread):

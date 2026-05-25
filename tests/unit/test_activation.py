@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-import os
-
 from overmind.activation.context_injector import ContextInjector
 from overmind.activation.session_tracker import SessionTracker
 from overmind.storage.db import StateDatabase

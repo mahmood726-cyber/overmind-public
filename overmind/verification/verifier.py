@@ -3,9 +3,8 @@ from __future__ import annotations
 import subprocess
 from pathlib import Path
 
-from overmind.subprocess_utils import split_command, validate_command_prefix_with_detail
-
 from overmind.storage.models import ProjectRecord, TaskRecord, VerificationResult
+from overmind.subprocess_utils import split_command, validate_command_prefix_with_detail
 from overmind.verification.policy_guard import PolicyGuard
 from overmind.verification.profiles import VerificationPlanner
 

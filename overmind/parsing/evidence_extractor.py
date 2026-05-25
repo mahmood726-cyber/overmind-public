@@ -4,7 +4,6 @@ import re
 
 from overmind.storage.models import EvidenceEvent
 
-
 COMMAND_PATTERNS = (
     re.compile(r"^\$\s+"),
     re.compile(r"^COMMAND:\s*", re.IGNORECASE),

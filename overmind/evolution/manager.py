@@ -3,12 +3,11 @@ from __future__ import annotations
 
 import os
 import re
-from datetime import datetime, UTC
+from datetime import UTC, datetime
 from pathlib import Path
 
 from overmind.diagnosis.judge import Diagnosis
 from overmind.evolution.recipe import Recipe
-
 
 # Matches proven recipe rows (7 cols: recipe, pattern, fix, seen, resolved, confidence%, last_seen)
 PROVEN_ROW_RE = re.compile(

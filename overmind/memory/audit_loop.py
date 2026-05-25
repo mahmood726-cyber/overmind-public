@@ -3,7 +3,7 @@ from __future__ import annotations
 import uuid
 
 from overmind.storage.db import StateDatabase
-from overmind.storage.models import MemoryRecord, VerificationResult, utc_now
+from overmind.storage.models import MemoryRecord, VerificationResult
 
 
 class AuditLoop:

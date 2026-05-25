@@ -10,7 +10,6 @@ execution, store verified skills, retrieve compositionally.
 from __future__ import annotations
 
 import json
-import math
 from dataclasses import dataclass, field
 from pathlib import Path
 

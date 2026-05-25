@@ -3,7 +3,6 @@ from __future__ import annotations
 from overmind.storage.models import ProjectRecord, TaskRecord
 from overmind.tasks.task_models import build_baseline_task, build_test_first_tasks
 
-
 OPEN_TASK_STATES = {
     "DISCOVERED",
     "QUEUED",

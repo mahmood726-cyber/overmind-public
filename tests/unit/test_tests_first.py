@@ -1,6 +1,6 @@
 from overmind.storage.models import ProjectRecord
-from overmind.tasks.task_models import build_test_first_tasks
 from overmind.tasks.task_generator import TaskGenerator
+from overmind.tasks.task_models import build_test_first_tasks
 
 
 def test_build_test_first_tasks_creates_two_chained_tasks():

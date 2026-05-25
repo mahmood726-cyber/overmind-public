@@ -4,7 +4,6 @@ import sys
 from pathlib import Path
 
 import pytest
-
 from overmind.config import AppConfig
 from overmind.discovery.project_scanner import ProjectScanner
 from overmind.storage.db import StateDatabase

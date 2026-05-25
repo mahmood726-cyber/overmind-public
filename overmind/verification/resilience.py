@@ -8,10 +8,9 @@ from __future__ import annotations
 
 import json
 import subprocess
-from dataclasses import dataclass, field
-from datetime import datetime, UTC
+from dataclasses import dataclass
+from datetime import datetime
 from pathlib import Path
-
 
 # ─── 1. Systemic Alert Detector (Immunology: fever response) ───────────────
 
@@ -133,7 +132,6 @@ class PreFixRiskChecker:
                 cwd=project_path, capture_output=True, text=True, timeout=10,
             )
             if proc.returncode == 0 and proc.stdout.strip():
-                from datetime import timezone
                 last_commit = proc.stdout.strip()
                 # Parse git date format: "2026-04-09 01:23:45 +0000"
                 try:

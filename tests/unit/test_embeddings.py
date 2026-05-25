@@ -80,7 +80,6 @@ def test_semantic_search_with_manual_embeddings(tmp_path):
 
         # Manually call the semantic search internals with a known query embedding
         # [1.0, 0.0, 0.0] should match mem_e1
-        from overmind.memory import embeddings as emb_mod
         import overmind.memory.embeddings as _emb
 
         # Monkeypatch embed() to return a known vector

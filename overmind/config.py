@@ -7,7 +7,6 @@ from typing import Any
 
 import yaml
 
-
 APP_STATE_DIRNAME = "Overmind" if os.name == "nt" else "overmind"
 
 
@@ -116,7 +115,7 @@ class AppConfig:
         config_dir: Path | None = None,
         data_dir: Path | None = None,
         db_path: Path | None = None,
-    ) -> "AppConfig":
+    ) -> AppConfig:
         package_root = Path(__file__).resolve().parents[1]
         config_dir = Path(
             os.environ.get("OVERMIND_CONFIG_DIR", str(config_dir or package_root / "config"))

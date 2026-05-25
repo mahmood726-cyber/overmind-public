@@ -15,7 +15,7 @@ from collections import Counter
 from pathlib import Path
 
 from overmind.storage.db import StateDatabase
-from overmind.storage.models import MemoryRecord, utc_now
+from overmind.storage.models import MemoryRecord
 
 SESSIONS_DIR = Path.home() / ".claude" / "projects" / "C--Users-user"
 

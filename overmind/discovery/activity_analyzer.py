@@ -4,7 +4,10 @@ import os
 from dataclasses import dataclass, field
 from pathlib import Path
 
-from overmind.discovery.analysis_signals import describe_analysis_signals, detect_analysis_signals
+from overmind.discovery.analysis_signals import (
+    describe_analysis_signals,
+    detect_analysis_signals,
+)
 from overmind.redaction import redact_text
 
 ACTIVITY_FILENAMES = {

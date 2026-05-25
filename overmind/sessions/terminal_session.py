@@ -1,19 +1,18 @@
 from __future__ import annotations
 
-from collections import Counter
 import queue
 import subprocess
 import time
+from collections import Counter
+from collections.abc import Callable
 from dataclasses import dataclass, field
-from datetime import UTC, datetime
 from pathlib import Path
-from typing import Callable
 
 from overmind.runners.protocols import INTERACTIVE, RunnerProtocol
-from overmind.subprocess_utils import split_command
 from overmind.sessions.output_stream import OutputStreamReader
 from overmind.sessions.transcript_store import TranscriptStore
 from overmind.storage.models import SessionObservation, utc_now
+from overmind.subprocess_utils import split_command
 
 
 @dataclass(slots=True)

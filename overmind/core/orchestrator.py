@@ -5,8 +5,6 @@ import subprocess
 import time
 from pathlib import Path
 
-from overmind.subprocess_utils import split_command, validate_command_prefix_with_detail
-
 from overmind.config import AppConfig
 from overmind.core.health_manager import HealthManager
 from overmind.core.policy_engine import PolicyEngine
@@ -25,6 +23,7 @@ from overmind.runners.runner_registry import RunnerRegistry
 from overmind.sessions.session_manager import SessionManager
 from overmind.storage.db import StateDatabase
 from overmind.storage.models import ProjectRecord, TaskRecord
+from overmind.subprocess_utils import split_command, validate_command_prefix_with_detail
 from overmind.tasks.prioritizer import Prioritizer
 from overmind.tasks.task_generator import TaskGenerator
 from overmind.tasks.task_models import build_baseline_task

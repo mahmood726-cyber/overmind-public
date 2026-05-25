@@ -11,7 +11,7 @@ from overmind.review.finding import (
 )
 from overmind.review.personas import ReviewPersona, personas_for_project
 from overmind.storage.db import StateDatabase
-from overmind.storage.models import MemoryRecord, ProjectRecord, TaskRecord, utc_now
+from overmind.storage.models import MemoryRecord, ProjectRecord, TaskRecord
 
 
 class MultiPersonaReviewer:

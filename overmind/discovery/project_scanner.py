@@ -663,9 +663,7 @@ class ProjectScanner:
     ) -> list[str]:
         supported: list[str] = []
         for check in checks:
-            if check == "build" and build_commands:
-                supported.append(check)
-            elif check in {
+            if (check == "build" and build_commands) or (check in {
                 "relevant_tests",
                 "targeted_tests",
                 "existing_tests",
@@ -696,14 +694,6 @@ class ProjectScanner:
                 "matrix_stability_checks",
                 "distribution_robustness_checks",
                 "model_assumption_checks",
-            } and test_commands:
-                supported.append(check)
-            elif check in {"playwright", "targeted_browser_test", "smoke_flow", "accessibility_check"} and browser_test_commands:
-                supported.append(check)
-            elif check in {"lighthouse", "before_after_benchmark", "no_correctness_regression"} and perf_commands:
-                supported.append(check)
-            elif check in {"regression_checks", "cross_implementation_parity"} and (build_commands or test_commands):
-                supported.append(check)
-            elif check == "build_or_direct_evidence" and build_commands:
+            } and test_commands) or (check in {"playwright", "targeted_browser_test", "smoke_flow", "accessibility_check"} and browser_test_commands) or (check in {"lighthouse", "before_after_benchmark", "no_correctness_regression"} and perf_commands) or (check in {"regression_checks", "cross_implementation_parity"} and (build_commands or test_commands)) or (check == "build_or_direct_evidence" and build_commands):
                 supported.append(check)
         return supported

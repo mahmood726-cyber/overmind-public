@@ -2,11 +2,19 @@ from __future__ import annotations
 
 import json
 import sqlite3
+from collections.abc import Callable
 from pathlib import Path
-from typing import Any, Callable, TypeVar
+from typing import Any, TypeVar
 
 from overmind.memory import embeddings
-from overmind.storage.models import InsightRecord, MemoryRecord, ProjectRecord, RunnerRecord, TaskRecord, utc_now
+from overmind.storage.models import (
+    InsightRecord,
+    MemoryRecord,
+    ProjectRecord,
+    RunnerRecord,
+    TaskRecord,
+    utc_now,
+)
 
 T = TypeVar("T")
 

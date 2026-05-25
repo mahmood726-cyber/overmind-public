@@ -2,8 +2,8 @@
 from __future__ import annotations
 
 import re
+from collections.abc import Callable
 from dataclasses import dataclass
-from typing import Callable
 
 _GEMINI_CONCISENESS_PREFIX = (
     "Be concise. No decorative formatting, no insight boxes, "
